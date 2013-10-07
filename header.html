@@ -1,0 +1,36 @@
+<?php
+
+// Start output buffering:
+ob_start();
+
+// Initialize a session:
+session_start();
+
+// Check for a $page_title value:
+if (!isset($page_title)){
+	$page_title = 'CollegePort';
+}
+if (!isset($page_name)){
+    $page_name = 'Welcome,';
+}
+    
+
+?>
+<!DOCTYPE html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title><?php echo $page_title; ?></title>
+    <link href="bootstrap.min.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+
+<div id="header">
+
+    <h1>SweetSuites</h1>
+
+</div>
+
+<div id="header2">
+
+    <h3><?php echo $page_name; ?></h3>
+
+</div>
