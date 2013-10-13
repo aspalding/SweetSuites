@@ -1,8 +1,8 @@
 <?php 
 
-$page_title = 'CollegePort - Registered!';
+$page_title = 'sweet Suites - Booked!';
 $page_name = 'Registration';
-include ('header.html');
+include ('static/header.html');
 
 $class = $_GET['Register'];
 
@@ -13,7 +13,7 @@ $student = $_SESSION['name'];
 ?>
 
 <div class="col-md-2">
-<?php include ('menu.html')?>
+<?php include ('static/menu.html')?>
 </div>
 
 
