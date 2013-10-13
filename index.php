@@ -35,7 +35,7 @@ require_once 'dblogin.php';
     
     <?php
 
-        $query = "SELECT * FROM courses";
+        $query = "SELECT * FROM rooms";
         $result = mysql_query($query);
 
         if (!$result) die ("Database access failed: " . mysql_error());

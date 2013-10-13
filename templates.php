@@ -5,7 +5,7 @@ require_once 'vendor/autoload.php' ;
 $view_table = <<< TEMP
 
 <table class="table table-bordered">
-<th>Hotel</th><th>Date</th><th>Location</th> <th>Vacancy</th> <th>Filled</th> <th>Waitlist</th><th>Rating</th><th>Notes</th><th>City</th><th>Address</th>
+<th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th><th>Guests</th>
 {% block table %}
 
 {% for row in rows %}
@@ -24,7 +24,7 @@ TEMP;
 $admin_table = <<< TEMP
 
 <table class="table table-bordered">
-<th></th><th>Hotel</th><th>Date</th><th>Location</th> <th>Vacancy</th> <th>Filled</th> <th>Waitlist</th><th>Rating</th><th>Notes</th><th>City</th><th>Address</th>
+<th></th><th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th><th>Guests</th>
 <form name="input" action="edit_suites.php" method="get">
 
 {% block table %}
@@ -60,7 +60,7 @@ TEMP;
 $user_table = <<< TEMP
 
 <table class="table table-bordered">
-<th></th><th>Hotel</th><th>Date</th><th>Location</th> <th>Vacancy</th> <th>Filled</th> <th>Waitlist</th><th>Rating</th><th>Notes</th><th>City</th><th>Address</th>
+<th></th><th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th><th>Guests</th>
 <form name="input" action="suites_registered.php" method="get">
 
 {% block table %}
