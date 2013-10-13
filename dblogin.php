@@ -1,8 +1,8 @@
 <?php
-$db_hostname = localhost;
-$db_database = sampledb;
-$db_username = sampleun;
-$db_password = sample pw;
+$db_hostname = 'localhost';
+$db_database = 'sampledb';
+$db_username = 'sampleun';
+$db_password = 'sample pw';
 
 $db_server = mysql_connect($db_hostname, $db_username, $db_password);
 

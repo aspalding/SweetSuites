@@ -2,7 +2,7 @@
 
 $page_title = 'SweetSuites - Edit Suites';
 $page_name = 'Edit Suites';
-include ('header.html');
+include ('static/header.html');
 
 require_once 'dblogin.php';
 
@@ -15,7 +15,7 @@ if($class == null)
 ?>
     
 <div class="col-md-2">
-<?php include ('menu.html')?>
+<?php include ('static/menu.html')?>
 </div>
 
 <div class="col-md-10">
@@ -46,10 +46,6 @@ if($class == null)
         $slots = mysql_entities_fix_string($_POST['slots']);
         $department = mysql_entities_fix_string($_POST['department']);
 
-        if (!$db_server) die("Unable to connect to MySQL: " . mysql_error());
-            mysql_select_db($db_database) or die("Unable to select database: " . mysql_error());
-
-
         if($class == "new"){
             $course_id = mysql_entities_fix_string($_POST['course_id']);
             $department_id = mysql_entities_fix_string($_POST['department_id']);
@@ -61,11 +57,12 @@ if($class == null)
 
         if ($_POST['name']){
             $result = mysql_query($query);
+			
             if (!$result) die ("Database access failed: " . mysql_error());
 
             mysql_close($db_server);
 
-            die(header('Location: choosedep_reg.php'));
+            die(header('Location: index.php'));
         }
 
     ?>

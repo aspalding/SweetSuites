@@ -2,12 +2,12 @@
 
 $page_title = 'SweetSuites - Under Construction';
 $page_name = 'Under Construction';
-include ('header.html');
+include ('static/header.html');
 
 ?>
 
 <div class="col-md-2">
-<?php include ('menu.html')?>
+<?php include ('static/menu.html')?>
 </div>
 
 <div class="col-md-8">

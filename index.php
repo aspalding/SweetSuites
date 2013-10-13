@@ -2,46 +2,64 @@
 
 $page_title = 'SweetSuites - Portal';
 $page_name = 'Portal';
-include ('header.html');
+include ('static/header.html');
+
+require 'templates.php';
 
 require_once 'dblogin.php';
 
 ?>
 
 <div class="col-md-2">
-<?php include ('menu.html');?>
+<?php include ('static/menu.html');?>
 </div>
 
 <div class="col-md-10">
+	<p>
+	    <?php
+	        session_start();    
+	        if (isset($_SESSION['name']))
+	        {
+	            $name = $_SESSION['name'];
+	            $type = $_SESSION['type'];
 
-    <p class="lead">
-        <?php
-            session_start();    
-            if (isset($_SESSION['name']))
-            {
-                $name = $_SESSION['name'];
-                $type = $_SESSION['type'];
+	            echo "Hello $name, you are a $type. ";
+	        }
+	        else echo "Please <a href=login.php>click here</a> to log in.";
+	    ?>
 
-                echo "Hello $name, you are a $type. ";
-            }
-            else echo "Please <a href=login.php>click here</a> to log in.";
-        ?>
+	    This site is under construction.</br>
 
-        This site is under construction.</br>
-    
-    </p>
+	</p>
+
     
     <?php
 
-        $query = "SELECT * FROM courses WHERE Department_ID='CS'";
+        $query = "SELECT * FROM courses";
         $result = mysql_query($query);
 
         if (!$result) die ("Database access failed: " . mysql_error());
 
-        $rows = mysql_num_rows($result);
+        $num_rows = mysql_num_rows($result);
+		$rows = array();
+		for($i = 0; $i < $num_rows; ++$i){
+			$rows[$i] = mysql_fetch_row($result);
+		}
+		
+		if (!isset($_SESSION['name'])){
+			echo $twig->render('@unregistered/view_table.html', array('rows' => $rows));
+		}
+		elseif($_SESSION['type'] == 'faculty'){
+			echo $twig->render('@admin/view_table.html', array('rows' => $rows));
+		}
+		elseif($_SESSION['type'] == 'underclass'){
+			echo $twig->render('@user/view_table.html', array('rows' => $rows));
+		}
 
+		
+		/*
         echo '<table class="table table-bordered"><tr>';
-        echo '<th></th><th>Hotel</th><th>Date</th><th>Location</th> <th>Vacancy</th> <th>Filled</th> <th>Waitlist</th><th>Rating</th><th>Notes</th>';
+        echo '<th></th><th>Hotel</th><th>Date</th><th>Location</th> <th>Vacancy</th> <th>Filled</th> <th>Waitlist</th><th>Rating</th><th>Notes</th><th>City</th>';
         echo '</tr>';
         
         if($type == "faculty")        
@@ -71,7 +89,7 @@ require_once 'dblogin.php';
             echo '</table><input type="submit" value="Register"></form>';
         }
   		
-	
+	*/
 	?>
 	
 </div>

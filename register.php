@@ -2,14 +2,16 @@
 
 $page_title = 'SweetSuites - Register';
 $page_name = 'Register';
-include ('header.html');
+include ('static/header.html');
+
+require 'templates.php';
 
 require_once 'dblogin.php';
     
 ?>
     
 <div class="col-md-2">
-<?php include ('menu.html')?>
+<?php include ('static/menu.html')?>
 </div>
 
 <div class="col-md-10">
@@ -21,24 +23,16 @@ require_once 'dblogin.php';
                 die(header('Location: index.php'));
             }
         ?>
-    
-    </p>
-
-	 <h1>New User</h1>
-	 <form name="input" method="post">
-
-    User name:<br><input type="text" name="name" size="25"><br>
-    Password:<br><input type="text" name="location" size="25"><br>
-
-    <br><input type="submit" value="Submit"></form>
-
+	
 	<?php
+		echo $twig->render('register.html');
+		
 
         $type = 'underclass';
-        $course = mysql_entities_fix_string($_POST['name']);
-	    $location = md5(mysql_entities_fix_string($_POST['location']));
+        $username = mysql_entities_fix_string($_POST['name']);
+	    $password = md5(mysql_entities_fix_string($_POST['pass']));
 
-        $query = "INSERT INTO users VALUES('$course', '$type', NULL, '$location', NULL)";
+        $query = "INSERT INTO users VALUES('$username', '$type', NULL, '$password', NULL)";
 
         if ($_POST['name']){
             $result = mysql_query($query);
