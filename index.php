@@ -9,7 +9,7 @@ require_once 'dblogin.php';
 ?>
 
 <div class="col-md-2">
-<?php include ('menu.html')?>
+<?php include ('menu.html');?>
 </div>
 
 <div class="col-md-10">
