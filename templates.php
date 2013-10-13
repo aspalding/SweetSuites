@@ -41,12 +41,18 @@ $admin_table = <<< TEMP
 {% endfor %}
 
 {% endblock %}
-</table><input type="submit" value="Edit"></form>
+</table>
+
+<div class="well" style="max-width: 200px; margin: 0 0 10px;">
+
+<input type="submit" class="btn btn-warning btn-block" value="Edit"></form></br>
 
 <form name='input' action='edit_suites.php' method='get'>
 <input type='hidden' id='type' name='Register' value='new'>
-<input type="submit" value="New Course">
+<input type="submit" class="btn btn-primary btn-block" value="New Suite">
 </form>
+
+</div>
 
 
 TEMP;
@@ -71,8 +77,13 @@ $user_table = <<< TEMP
 {% endfor %}
 
 {% endblock %}
-</table><input type="submit" value="Register"></form>
+</table>
 
+<div class="well" style="max-width: 200px; margin: 0 0 10px;">
+
+<input type="submit" class="btn btn-primary btn-block" value="Book!"></form>
+
+</div>
 TEMP;
 
 
