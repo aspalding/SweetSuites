@@ -49,10 +49,10 @@ require_once 'dblogin.php';
 		if (!isset($_SESSION['name'])){
 			echo $twig->render('@unregistered/view_table.html', array('rows' => $rows));
 		}
-		elseif($_SESSION['type'] == 'faculty'){
+		elseif($_SESSION['type'] == 'admin'){
 			echo $twig->render('@admin/view_table.html', array('rows' => $rows));
 		}
-		elseif($_SESSION['type'] == 'underclass'){
+		elseif($_SESSION['type'] == 'user'){
 			echo $twig->render('@user/view_table.html', array('rows' => $rows));
 		}
 

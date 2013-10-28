@@ -4,11 +4,11 @@ $page_title = 'sweet Suites - Booked!';
 $page_name = 'Registration';
 include ('static/header.html');
 
-$class = $_GET['Register'];
+$suite = $_GET['Register'];
 
 session_start();
 
-$student = $_SESSION['name'];
+$user = $_SESSION['id'];
 
 ?>
 
@@ -24,46 +24,35 @@ $student = $_SESSION['name'];
     require_once 'dblogin.php';
 	
 
-    $query = "SELECT * FROM courses WHERE Course_ID='$class'";
+    $query = "SELECT * FROM rooms WHERE room_ID='$suite'";
     $result = mysql_query($query);
         
     if (!$result) die("Database access failed: " . mysql_error());
     elseif (mysql_num_rows($result)){
         $row = mysql_fetch_row($result);
-        $slots = $row[3];
-        $slots_filled = $row[4];
-        $students_registered = $row[9];
+        $vacancy = $row[5];
     }
     
 
-    if(strpos($students_registered, $student) === false){
-        if($slots == $slots_filled){
-            $query = "UPDATE courses SET Wait_list=Wait_list + 1, Students = IFNULL(CONCAT(`Students`, '$student'), '$student') WHERE Course_ID='$class'";
-            $result = mysql_query($query);
-            if (!$result) die ("Database access failed: " . mysql_error());
-
-            mysql_close($db_server);
-
-            echo "<p class='text-center'>We apologize, that suite is filled. We've added you to the waitlist for $class.<br>";
-            echo "Click <a href=index.php>here</a> to register for another class.</p>";
-        }
-
-        else{
-            $query = "UPDATE courses SET Filled_Slots=Filled_Slots + 1, Students = IFNULL(CONCAT(`Students`, '$student '), '$student') WHERE Course_ID='$class'";
-            $result = mysql_query($query);
-            if (!$result) die ("Database access failed: " . mysql_error());
-
-            mysql_close($db_server);
-
-            echo "<p class='text-center'>You have booked $class.<br>";
-            echo "Click <a href=index.php>here</a> to book another suite.</p>";
-        }
+    if($vacancy == 0){
+        echo "<p class='text-center'>We apologize, that suite is filled.<br>";
+        echo "Click <a href=index.php>here</a> to book another room.</p>";
     }
 
-    else{  
-        echo "<p class='text-center'>You've already booked $class.<br>";
+    else{
+        $query = "UPDATE rooms SET vacancy=vacancy - 1 WHERE room_ID='$suite'";
+        $result = mysql_query($query);
+        
+        $query = "INSERT INTO history VALUES('$suite', '$user')";
+        $result = mysql_query($query);
+        
+        if (!$result) die ("Database access failed: " . mysql_error());
+
+        mysql_close($db_server);
+
+        echo "<p class='text-center'>You have booked $suite.<br>";
         echo "Click <a href=index.php>here</a> to book another suite.</p>";
-    }  
+    }
     
 ?>
 

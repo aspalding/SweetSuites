@@ -27,6 +27,7 @@ if (isset($_SERVER['PHP_AUTH_USER']) &&
             $_SESSION['name'] = $un_temp;
             $_SESSION['pass'] = $pw_temp;
             $_SESSION['type'] = $row[1];
+            $_SESSION['id'] = $row[2];
 
             die(header('Location: index.php'));
         }
