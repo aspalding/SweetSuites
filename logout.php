@@ -1,22 +1,16 @@
 <?php
 
     session_start();
-
-
-
-    unset($_SESSION['name']);
-    unset($_SESSION['pass']);
-    unset($_SESSION['type']);
-    session_destroy();
     
-    setcookie("PHPSESSID","",time()-3600,"/");
+    destroy_session_and_data();
     
-    unset($_COOKIE['PHPSESSID']);
-
-
-    session_write_close();
-    
-    session_regenerate_id(true); 
+    function destroy_session_and_data()
+    {
+        $_SESSION = array();
+        if (session_id() != "" || isset($_COOKIE[session_name()]))
+        setcookie(session_name(), '', time() - 2592000, '/');
+        session_destroy();
+    }
 
     die(header('Location: index.php'));
     

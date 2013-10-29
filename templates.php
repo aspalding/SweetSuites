@@ -4,7 +4,7 @@ require_once 'vendor/autoload.php' ;
 
 $view_table = <<< TEMP
 
-<table class="table table-bordered">
+<table class="table">
 <th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th>
 {% block table %}
 
@@ -23,7 +23,7 @@ TEMP;
 
 $admin_table = <<< TEMP
 
-<table class="table table-bordered">
+<table class="table table-hover">
 <th></th><th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th>
 <form name="input" action="edit_suites.php" method="get">
 
@@ -61,7 +61,7 @@ TEMP;
 
 $user_table = <<< TEMP
 
-<table class="table table-bordered">
+<table class="table table-hover">
 <th></th><th>Suite</th><th>Suite Name</th><th>Type</th> <th>Smoking</th> <th>Pet</th> <th>Vacancy</th><th>Meal</th><th>Rating</th><th>Price</th>
 <form name="input" action="suites_registered.php" method="get">
 
@@ -81,10 +81,12 @@ $user_table = <<< TEMP
 {% endblock %}
 </table>
 
-<div class="well" style="max-width: 200px; margin: 0 0 10px;">
+<center>
+<div class="well" style="max-width: 300px; margin: 0 0 10px;">
 
 <input type="submit" class="btn btn-primary btn-block" value="Book!"></form>
 
+</center>
 </div>
 TEMP;
 
@@ -103,7 +105,7 @@ TEMP;
 
 $history = <<< TEMP
     
-    <table class="table table-bordered">
+    <table class="table">
     <th>Room ID</th><th>User ID</th>
 
     {% block table %}
