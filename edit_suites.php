@@ -19,32 +19,25 @@ if($suite == null)
 
 <div class="col-md-10">
 
-	 <h1><?php echo $suite; ?></h1>
-	 <form name="input" method="post">
+	<h1><?php echo $suite; ?></h1>
 
-
+	<form name="input" method="post">
     Name:<br><input type="text" name="name" size="25"><br>
     Type:<br><input type="text" name="type" size="25"><br>
+    Smoking:<br><input type="text" name="smoking" size="25"><br>
     Pet (0,1):<br><input type="text" name="pet" size="25"><br>
     Meal:<br><input type="text" name="meal" size="25"><br>	 
     Rating(*-*****):<br><input type="text" name="rating" size="25"><br>	 
-    Price($-$$$$$):<br><input type="text" name="price" size="25"><br>	 
+    Price($-$$$$$):<br><input type="text" name="price" size="25"><br><br>	 
+    <input type="submit" value="Submit"></form>
 
 	<?php
-        if($suite == "new"){
-            echo 'Suite:<br><input type="text" name="suite" size="25"><br>';
-            echo '<input type="submit" value="Submit"></form>';
-        }
-        else{
-            echo '<br><input type="submit" value="Submit"></form>';
-        }
 
         
         
-        $suite_number = mysql_entities_fix_string($_POST['suite']);
         $name = mysql_entities_fix_string($_POST['name']);
 	    $type = mysql_entities_fix_string($_POST['type']);
-        $smoking = 1;
+        $smoking = mysql_entities_fix_string($_POST['smoking']);
         $pet = mysql_entities_fix_string($_POST['pet']);
         $vacancy = 5;
         $meal = mysql_entities_fix_string($_POST['meal']);
@@ -52,10 +45,10 @@ if($suite == null)
         $price = mysql_entities_fix_string($_POST['price']);
 
         if($suite == "new"){
-            $query = "INSERT INTO rooms VALUES('$suite_number', '$name', '$type', '$smoking', '$pet', '$vacancy', '$meal', '$rating', '$price')";
+            $query = "INSERT INTO rooms VALUES(NULL, '$name', '$type', '$smoking', '$pet', '$vacancy', '$meal', '$rating', '$price')";
         }
         else{
-            $query = "UPDATE rooms SET room_ID='$suite_number', room_name='$name', type='$type', pet='$pet', meal = '$meal', rating = '$rating', price = '$price' WHERE room_ID='$suite_number'";
+            $query = "UPDATE rooms SET room_name='$name', type='$type', pet='$pet', vacancy = '$vacancy', meal = '$meal', rating = '$rating', price = '$price' WHERE room_ID='$suite'";
         }
 
         if ($_POST['name']){

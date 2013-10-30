@@ -43,7 +43,7 @@ $user = $_SESSION['id'];
         $query = "UPDATE rooms SET vacancy=vacancy - 1 WHERE room_ID='$suite'";
         $result = mysql_query($query);
         
-        $query = "INSERT INTO history VALUES('$suite', '$user')";
+        $query = "INSERT INTO history VALUES(NULL, '$suite', '$user')";
         $result = mysql_query($query);
         
         if (!$result) die ("Database access failed: " . mysql_error());

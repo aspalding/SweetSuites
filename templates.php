@@ -106,7 +106,7 @@ TEMP;
 $history = <<< TEMP
     
     <table class="table">
-    <th>Room ID</th><th>User ID</th>
+    <th>Transaction ID</th><th>Room ID</th><th>User ID</th>
 
     {% block table %}
 
