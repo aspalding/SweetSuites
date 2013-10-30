@@ -16,23 +16,21 @@ require_once 'dblogin.php';
 
 <div class="col-md-10">
 
-        <?php
-            session_start();    
-            if (isset($_SESSION['name']))
-            {
-                die(header('Location: index.php'));
-            }
-        ?>
-	
-	<?php
+    <?php
+        session_start();    
+        if (isset($_SESSION['name']))
+        {
+            die(header('Location: index.php'));
+        }
+
 		echo $twig->render('register.html');
 		
 
-        $type = 'underclass';
+        $type = 'user';
         $username = mysql_entities_fix_string($_POST['name']);
 	    $password = md5(mysql_entities_fix_string($_POST['pass']));
 
-        $query = "INSERT INTO users VALUES('$username', '$type', NULL, '$password', NULL)";
+        $query = "INSERT INTO users VALUES('$username', '$type', NULL, '$password')";
 
         if ($_POST['name']){
             $result = mysql_query($query);
